@@ -28,8 +28,8 @@ docker run --name netcheck --detach netcheck:latest
 ### How to check that the image is running
 
 ```bash
-netcheck_ip=$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' \
-netcheck)
+netcheck_ip=$(docker inspect -f \
+'{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' netcheck)
 curl http://${netcheck_ip}
 ```
 
