@@ -1,6 +1,7 @@
 # netcheck
 
 [![Actions Status](https://github.com/netserf/netcheck/workflows/Docs/badge.svg)](https://github.com/netserf/netcheck/actions)
+[![Actions Status](https://github.com/netserf/netcheck/workflows/Test/badge.svg)](https://github.com/netserf/netcheck/actions)
 
 A container image for network troubleshooting and testing.
 

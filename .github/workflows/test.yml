@@ -7,6 +7,15 @@ on:
     branches: [main]
 
 jobs:
+  docker-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Run hadolint
+        uses: hadolint/hadolint-action@v2.0.0
+        with:
+          dockerfile: Dockerfile
   container-structure-test:
     runs-on: ubuntu-latest
     steps:
