@@ -1,0 +1,58 @@
+---
+schemaVersion: 2.0.0
+
+commandTests:
+  - name: "check curl installed"
+    command: "which"
+    args: ["curl"]
+    expectedOutput: [".*/curl"]
+  - name: "check wget2 installed"
+    command: "which"
+    args: ["wget2"]
+    expectedOutput: [".*/wget2"]
+  - name: "check nmap installed"
+    command: "which"
+    args: ["nmap"]
+    expectedOutput: [".*/nmap"]
+  - name: "check ncat installed"
+    command: "which"
+    args: ["ncat"]
+    expectedOutput: [".*/ncat"]
+  - name: "check dig installed"
+    command: "which"
+    args: ["dig"]
+    expectedOutput: [".*/dig"]
+  - name: "check ip installed"
+    command: "which"
+    args: ["ip"]
+    expectedOutput: [".*/ip"]
+  - name: "check ss installed"
+    command: "which"
+    args: ["ss"]
+    expectedOutput: [".*/ss"]
+  - name: "check ping installed"
+    command: "which"
+    args: ["ping"]
+    expectedOutput: [".*/ping"]
+  - name: "check tracepath installed"
+    command: "which"
+    args: ["tracepath"]
+    expectedOutput: [".*/tracepath"]
+  - name: "check traceroute installed"
+    command: "which"
+    args: ["traceroute"]
+    expectedOutput: [".*/traceroute"]
+  - name: "check tcptraceroute installed"
+    command: "which"
+    args: ["tcptraceroute"]
+    expectedOutput: [".*/tcptraceroute"]
+  - name: "check jq installed"
+    command: "which"
+    args: ["jq"]
+    expectedOutput: [".*/jq"]
+
+fileContentTests:
+- name: "nginx default page"
+  path: "/usr/share/nginx/html/index.html"
+  expectedContents: ['.*Hello World!.*']
+
