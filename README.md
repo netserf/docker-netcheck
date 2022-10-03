@@ -8,7 +8,7 @@ A container image for network troubleshooting and testing.
 This image is based on the [official nginx container image](https://hub.docker.com/_/nginx)
 found on [DockerHub](https://hub.docker.com). It hosts a number of tools that
 can help with networking challenges encountered in container environments. The
-image listens on TCP port 80, by default. The goal is provide a image that can
+container listens on TCP port 80, by default. The goal is provide a image that can
 be exec'ed into and facilitate network troubleshooting inside your container
 network.
 
@@ -40,10 +40,17 @@ netcheck_ip=$(docker inspect -f \
 curl http://${netcheck_ip}
 ```
 
-## License
+### How to exec into the container for troubleshooting
 
-TODO
+```bash
+docker exec -it netcheck /bin/bash
+```
 
 ## Contributions
 
-TODO
+Pull requests are welcome. For major changes, please open an issue first to
+discuss what you would like to change.
+
+## License
+
+[![License](https://img.shields.io/badge/License-BSD_2--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)
