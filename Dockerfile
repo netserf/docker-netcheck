@@ -7,6 +7,7 @@ EXPOSE 80
 
 RUN apt-get update && apt-get install -y \
     curl wget2 nmap ncat dnsutils iproute2 iputils-ping iputils-tracepath \
-    tcptraceroute traceroute \
-    jq \
+    tcptraceroute traceroute tcpdump net-tools iptraf-ng iperf3 iftop bmon jq \
     && rm -rf /var/lib/apt/lists/*
+
+ENTRYPOINT ["/bin/bash"]
