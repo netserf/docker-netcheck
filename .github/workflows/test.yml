@@ -16,7 +16,7 @@ jobs:
         run: |
           npm install -g dockerlint
           dockerlint Dockerfile
-  container-structure-test:
+  docker-tests:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
@@ -29,10 +29,19 @@ jobs:
           chmod +x container-structure-test-linux-amd64
           mv container-structure-test-linux-amd64 /usr/local/bin/container-structure-test
           container-structure-test test --image netcheck:latest --config cst-config.yaml
+      - name: Check container runs
+        run: |
+          docker run -d --name netcheck netcheck:latest
+          docker ps | grep netcheck
+      - name: Check nginx page
+        run: |
+          netcheck_ip=$(docker inspect -f \
+            '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' netcheck)
+          curl http://${netcheck_ip}
   publish:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    needs: [docker-lint, container-structure-test]
+    needs: [docker-lint, docker-tests]
     steps:
       - name: Check out code
         uses: actions/checkout@v2
