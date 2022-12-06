@@ -8,6 +8,9 @@ on:
   schedule:
     - cron: "10 02 * * 0" # every Sunday at 2:10 AM UTC
 
+env:
+  IMAGE_NAME: "${{ github.repository }}:latest"
+
 jobs:
   docker-lint:
     runs-on: ubuntu-latest
@@ -24,19 +27,19 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
       - name: Docker build
-        run: docker build -t netcheck:latest .
+        run: docker build -t $IMAGE_NAME .
       - name: Run CST
         run: |
           curl -LO https://storage.googleapis.com/container-structure-test/latest/container-structure-test-linux-amd64
           chmod +x container-structure-test-linux-amd64
           mv container-structure-test-linux-amd64 /usr/local/bin/container-structure-test
-          container-structure-test test --image netcheck:latest --config cst-config.yaml
+          container-structure-test test --image $IMAGE_NAME --config cst-config.yaml
       - name: Check container runs
         run: |
-          docker run -d --name netcheck netcheck:latest
-          docker ps | grep netcheck
+          docker run -d --name test_container $IMAGE_NAME
+          docker ps | grep test_container
       - name: Check nginx page
         run: |
-          netcheck_ip=$(docker inspect -f \
-            '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' netcheck)
-          curl http://${netcheck_ip}
+          test_container_ipaddr=$(docker inspect -f \
+            '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' test_container)
+          curl http://${test_container_ipaddr}
