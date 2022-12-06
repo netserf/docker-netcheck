@@ -7,6 +7,9 @@ on:
     types:
       - completed
 
+env:
+  IMAGE_NAME: "${{ github.repository }}:latest"
+
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -21,9 +24,20 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Generate docker tag
+        run: |
+          git fetch --force --tags
+          UNIQUE_ID=$(git describe --tags --always)
+          IMAGE_VERSION=$(git tag | tail -1)
+          UNIQUE_IMAGE_TAG="${{ github.repository }}:${IMAGE_VERSION}-${UNIQUE_ID}"
+          echo "UNIQUE_IMAGE_TAG=$UNIQUE_IMAGE_TAG" >> $GITHUB_ENV
+      - name: Show docker tag
+        run: echo "UNIQUE_IMAGE_TAG=${{ env.UNIQUE_IMAGE_TAG }}"
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
           context: .
           push: true
-          tags: netserf/netcheck:latest
+          tags: |
+            ${{ env.IMAGE_NAME }}
+            ${{ env.UNIQUE_IMAGE_TAG }}
