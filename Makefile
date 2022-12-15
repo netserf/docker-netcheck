@@ -1,4 +1,4 @@
-IMAGE=netserf/netcheck:latest
+IMAGE=netserf/docker-netcheck:latest
 SHORT_NAME=netcheck
 
 build:
@@ -19,4 +19,3 @@ exec:
 clean:
 	docker stop $(SHORT_NAME)
 	docker rmi $(IMAGE)
-

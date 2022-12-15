@@ -1,7 +1,7 @@
-# netcheck
+# docker-netcheck
 
-[![Actions Status](https://github.com/netserf/netcheck/workflows/Docs/badge.svg)](https://github.com/netserf/netcheck/actions)
-[![Actions Status](https://github.com/netserf/netcheck/workflows/Test/badge.svg)](https://github.com/netserf/netcheck/actions)
+[![Actions Status](https://github.com/netserf/docker-netcheck/workflows/Docs/badge.svg)](https://github.com/netserf/docker-netcheck/actions)
+[![Actions Status](https://github.com/netserf/docker-netcheck/workflows/Test/badge.svg)](https://github.com/netserf/docker-netcheck/actions)
 
 A container image for network troubleshooting and testing.
 
@@ -17,19 +17,19 @@ network.
 ### How to build the image locally
 
 ```bash
-docker build -t netserf/netcheck:latest .
+docker build -t netserf/docker-netcheck:latest .
 ```
 
 ### How to pull the image from DockerHub
 
 ```bash
-docker pull netserf/netcheck:latest
+docker pull netserf/docker-netcheck:latest
 ```
 
 ### How to run the image locally
 
 ```bash
-docker run --name netcheck --detach netserf/netcheck:latest
+docker run --name netcheck --detach netserf/docker-netcheck:latest
 ```
 
 ### How to check that the image is running
