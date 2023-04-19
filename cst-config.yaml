@@ -50,6 +50,10 @@ commandTests:
     command: "which"
     args: ["jq"]
     expectedOutput: [".*/jq"]
+  - name: "check ldapsearch installed"
+    command: "which"
+    args: ["ldapsearch"]
+    expectedOutput: [".*/ldapsearch"]
 
 fileContentTests:
 - name: "nginx default page"

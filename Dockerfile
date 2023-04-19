@@ -6,7 +6,7 @@ COPY static-html-directory /usr/share/nginx/html
 RUN apt-get update && apt-get install -y \
     curl wget2 nmap ncat dnsutils iproute2 iputils-ping iputils-tracepath \
     tcptraceroute traceroute tcpdump net-tools iptraf-ng iperf3 iftop bmon \
-    jq \
+    jq ldap-utils \
     && rm -rf /var/lib/apt/lists/*
 
 EXPOSE 80
